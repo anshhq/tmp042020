@@ -1,0 +1,12 @@
+li {
+  list-style-type: none;
+}
+
+.link {
+  color: #0000aa;
+  cursor: pointer;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

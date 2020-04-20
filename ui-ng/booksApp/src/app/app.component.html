@@ -1,11 +1,26 @@
 <div class="content" role="main">
   <h1>Books App</h1>
-
   <div><a href="/">Reload page</a></div>
-
-  <div *ngIf="!librariesError">
+  <div *ngIf="!librariesError; else elseForLibraries">
+    <h3>Libraries</h3>
     <ul>
-      <li *ngFor="let library of libraries">{{ library.libraryName }}</li>
+      <li
+        class="link"
+        *ngFor="let library of libraries"
+        (click)="displayBooks(library.libraryId)"
+      >
+        {{ library.libraryName }}
+      </li>
     </ul>
   </div>
+  <ng-template #elseForLibraries>No libraries found or some error.</ng-template>
+  <div *ngIf="!booksCurrentError && booksCurrent.length > 0; else elseForBooks">
+    <h3>Books for {{ libraryCurrent }}</h3>
+    <ul>
+      <li *ngFor="let book of booksCurrent">{{ book }}</li>
+    </ul>
+  </div>
+  <ng-template #elseForBooks
+    >No books found for relevant library or some error.</ng-template
+  >
 </div>

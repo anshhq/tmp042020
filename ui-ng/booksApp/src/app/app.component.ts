@@ -9,10 +9,20 @@ import { BooksService } from 'services/books.service';
 })
 export class AppComponent implements OnInit {
   public title = 'booksApp';
-  public libraries = [];
+  public libraries: Array<{
+    libraryId: number;
+    libraryName: string;
+  }> = [];
   public librariesError: string = '';
-  private booksAll = [];
+  private booksAll: Array<{
+    bookId: number;
+    libraryId: number;
+    bookName: string;
+  }> = [];
   private booksAllError: string = '';
+  public booksCurrent: Array<string> = [];
+  public booksCurrentError: string = '';
+  public libraryCurrent: string = '';
 
   constructor(
     private librariesService: LibrariesService,
@@ -29,7 +39,6 @@ export class AppComponent implements OnInit {
     this.librariesService.getLibraries().subscribe(
       (data) => {
         this.libraries = data;
-        console.log(data);
       },
       (error) => {
         this.librariesError =
@@ -42,13 +51,29 @@ export class AppComponent implements OnInit {
     this.booksService.getBooksAll().subscribe(
       (data) => {
         this.booksAll = data;
-        console.log(data);
       },
       (error) => {
         this.booksAllError = 'Error: ' + error.status + ', ' + error.statusText;
+        console.log(this.booksAllError);
       }
     );
   }
 
-  filterBooksByLibraryId() {}
+  filterBooksByLibraryId(libraryId: number) {
+    this.libraryCurrent = this.libraries.find(
+      (o) => o.libraryId === libraryId
+    ).libraryName;
+    this.booksCurrent = [];
+    this.booksAll.forEach((e) => {
+      if (e.libraryId === libraryId) {
+        this.booksCurrent.push(e.bookName);
+      }
+    });
+  }
+
+  displayBooks(libraryId: number) {
+    this.getBooksAll();
+    this.filterBooksByLibraryId(libraryId);
+    this.ngOnInit();
+  }
 }

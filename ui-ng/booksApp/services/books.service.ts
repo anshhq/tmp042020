@@ -6,12 +6,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class BooksService {
+  private port = 8080;
+  private apiVersionCommon = '/api/v1';
   private host =
     window.location.protocol +
     '//' +
     window.location.hostname +
     ':' +
-    window.location.port;
+    this.port +
+    this.apiVersionCommon;
   private booksGetAll = this.host + '/books/';
   private booksGetById = this.host + '/books/:id';
   private booksDelete = this.host + '/books/:id';
