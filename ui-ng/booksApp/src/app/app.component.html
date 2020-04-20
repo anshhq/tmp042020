@@ -1,0 +1,11 @@
+<div class="content" role="main">
+  <h1>Books App</h1>
+
+  <div><a href="/">Reload page</a></div>
+
+  <div *ngIf="!librariesError">
+    <ul>
+      <li *ngFor="let library of libraries">{{ library.libraryName }}</li>
+    </ul>
+  </div>
+</div>

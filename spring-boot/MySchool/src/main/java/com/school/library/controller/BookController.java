@@ -30,18 +30,18 @@ public class BookController {
 	private BookRepository bookRepository;
 
 	@GetMapping("/books")
-	public List<Book> getAllLibraries() {
+	public List<Book> getAllBooks() {
 		return bookRepository.findAll();
 	}
 
 	@GetMapping("/books/{id}")
-	public ResponseEntity<Book> getLibraryById(@PathVariable(value = "id") Long bookId) throws ResourceNotFoundException {
+	public ResponseEntity<Book> getBookById(@PathVariable(value = "id") Long bookId) throws ResourceNotFoundException {
 		Book book = bookRepository.findById(bookId).orElseThrow(() -> new ResourceNotFoundException("Book not found for this id :: " + bookId));
 		return ResponseEntity.ok().body(book);
 	}
 
 	@PostMapping("/books")
-	public Book createLibrary(@Valid @RequestBody Book book) {
+	public Book createBook(@Valid @RequestBody Book book) {
 		return bookRepository.save(book);
 	}
 

@@ -91,7 +91,7 @@ public class RestClient {
 	private void createBook() {
 		Book newBook = new Book("dummy", 1);
 		RestTemplate restTemplate = new RestTemplate();
-		Library result = restTemplate.postForObject(CREATE_BOOKS_ENDPOINT_URL, newBook, Library.class);
+		Book result = restTemplate.postForObject(CREATE_BOOKS_ENDPOINT_URL, newBook, Book.class);
 		System.out.println(result);
 	}
 
@@ -108,7 +108,7 @@ public class RestClient {
 		params.put("id", "1");
 
 		RestTemplate restTemplate = new RestTemplate();
-		Library result = restTemplate.getForObject(GET_BOOK_ENDPOINT_URL, Library.class, params);
+		Book result = restTemplate.getForObject(GET_BOOK_ENDPOINT_URL, Book.class, params);
 
 		System.out.println(result);
 	}

@@ -8,32 +8,36 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "libraries")
+@Table(name = "books")
 public class Book {
 
 	private long bookId;
 	private long libraryId;
 	private String bookName;
 
+	public Book() {
+	}
+
 	public Book(String bookName, long libraryId) {
 		this.bookName = bookName;
 		this.libraryId = libraryId;
 	}
 
-	@Id	
+	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public long getBookId() {
 		return bookId;
 	}
+
 	public void setBookId(long bookId) {
 		this.bookId = bookId;
 	}
-	
 
 	@Column(name = "bookName", nullable = false)
 	public String getBookName() {
 		return bookName;
 	}
+
 	public void setBookName(String bookName) {
 		this.bookName = bookName;
 	}
@@ -42,10 +46,11 @@ public class Book {
 	public long getLibraryId() {
 		return libraryId;
 	}
+
 	public void setLibraryId(long libraryId) {
 		this.libraryId = libraryId;
 	}
-	
+
 	/*
 	 * @Column(name = "bookId", nullable = false) public String getBookId() { return
 	 * bookId; } public void setBookId(String bookId) { this.bookId = bookId; }
