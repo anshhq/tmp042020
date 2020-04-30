@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: User
+Build-Jdk: 14.0.1
+Implementation-Title: MySchoolApp
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.school.springboot
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/BooksApp
+Created-By: Maven Integration for Eclipse
+
